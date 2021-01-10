@@ -1,0 +1,60 @@
+These can be thought of as maps, hashmaps, lookup tables, or associative arrays
+    Allows for efficient lookup, insertion, and deletion of any object associated with given key
+
+Think of phone books --> allows us to retrieve info (number) with a key (name)
+
+(parallel lists)
+there already is implementation of dictionary but still could potentially build it out of lists
+How does PYTHON handle dicts? 
+
+Direct implementation: "dict" data type
+Working with dicts there is some syntactic sugar which is syntax within a programming language 
+that is designed to make things easier to read or to express.
+
+-----
+We do have restrictions which objects can be used as valid keys
+
+Hashable objects: 
+Object is hashable if has hash value that never changes during its lifetime
+It would need a _hash_() method
+    Called like:    object._hash_(self)
+Can be compared to other objects (needs an _eq_() method)
+
+Hashable objs which compare equal must have same hash value
+Most Python's immutable built-in objects are hashable 
+    Mutable containers (lists/dictionaries) aren't
+    Immutable containers (tuples/frozensets) only hashable if elements are
+        Strings, numbers are hashable and work well as dict keys
+        Can also use tuple objects as dict keys long as they only hold hashable types themselves
+
+Dictionaries underlie many parts of Python, like class attributes and variables
+in stack frame both stored internally in dictionaires
+
+They're well-tested with O(1) - constant time complexity for lookup, insert, update, and delete
+operations on average
+
+HOWEVER, specialized third-party dict implementations exist like
+    skip lists or B-tree-based dictionaries
+
+Asides from basic dict objs in Python, we've also go specialized dictionary implementations
+
+collections.OrderedDict --> remembers insertion order of keys 
+!!! must import collections !!!
+    class collections.OrderedDict([items])
+        --> returns instance of dict subclass that has methods specialized 
+        for rearranging dictionary order
+
+If key order is important for our alg to work, best to communicate clearly using
+OrderedDict class
+This class also supports the use of the reversed(seq) method
+    See moreDictPython.py
+
+There is also collections.defaultdict --> 
+returns a new dictionary-like object
+returns default values for missing keys
+It accepts a callable in its consturctor whose return value will be used
+if requested key cannot be found
+    must also import from collections
+    'from collections import defaultdict'
+
+
